@@ -5,12 +5,12 @@ module.exports = [
             name: 'shoulder press',
             // sets are tracked by array.length
             // reps and weight are objects inside the array
-            setsRepsWeight: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
+            setsRepsWeights: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
             notes: 'fealt strong the whole way through'
         },
         {
             name: 'bent over barbell row',
-            setsRepsWeights: [10, 10, 5],
+            setsRepsWeights: [{reps: 5, weight: '50lbs'}, {reps: 4, weight: '50lbs'}, {reps: 3, weight: '50lbs'}],
             notes: 'could not finish strong on the last set'
         }
         ],
@@ -22,12 +22,12 @@ module.exports = [
             name: 'leg press',
             // sets are tracked by array.length
             // reps and weight are objects inside the array
-            setsRepsWeight: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
+            setsRepsWeights: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
             notes: 'fealt strong the whole way through'
         },
         {
             name: 'squat',
-            setsRepsWeights: [10, 10, 5],
+            setsRepsWeights: [{reps: 5, weight: '50lbs'}, {reps: 4, weight: '50lbs'}, {reps: 3, weight: '50lbs'}],
             notes: 'could not finish strong on the last set'
         }
         ],

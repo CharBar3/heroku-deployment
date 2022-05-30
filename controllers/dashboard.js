@@ -15,7 +15,7 @@ Router.get('/', (req, res) => {
 // Show
 Router.get('/:id', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
-        console.log(foundWorkoutDay) 
+        // console.log(foundWorkoutDay) 
         res.render('./dashboard/show.ejs', {
             workoutDay: foundWorkoutDay
         })
