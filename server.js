@@ -9,6 +9,10 @@ const methodOverride = require('method-override');
 const mongoose = require ('mongoose');
 const app = express();
 const db = mongoose.connection;
+
+// requires workout model
+const Workout = require('./models/workout.js')
+
 //___________________
 //Port
 //___________________
@@ -58,6 +62,16 @@ app.use('/dashboard', dashboardController)
 // Routes
 //___________________
 //localhost:3000
+
+// Seed Route
+const seedWorkouts = require('./models/seedWorkouts.js')
+app.get('/seed', (req, res) => {
+  Workout.deleteMany({}, (error, allWorkouts) => {})
+  Workout.create(seedWorkouts, (error, data) => {
+    res.redirect('/')
+  })
+})
+
 app.get('/' , (req, res) => {
   res.redirect('/dashboard')
 });
