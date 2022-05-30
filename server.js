@@ -48,11 +48,18 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 
 
 //___________________
+// Controllers
+//___________________
+
+const dashboardController = require('./controllers/dashboard')
+app.use('/dashboard', dashboardController)
+
+//___________________
 // Routes
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.render('home.ejs');
+  res.redirect('/dashboard')
 });
  
 //___________________
