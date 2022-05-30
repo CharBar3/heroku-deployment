@@ -8,14 +8,24 @@
 </head>
 <body>
     <%- include('../partials/nav.ejs') %> 
+    <% console.log(workoutDay) %> 
     <h1><%= workoutDay.title %> EDIT</h1>
-    <div>
-    <% for(let i = 0; i < workoutDay.exercises.length; i++) { %>
-        <% const workoutExercise = workoutDay.exercises[i] %> 
-        <div><%= workoutExercise.name %></div> 
-        <% const setsRepsWeights = workoutExercise.setsRepsWeights %> 
-        <% for(let i = 0; i < setsRepsWeights.length; i++) { %>
-        <div>Set <%= i+1 %>: Reps <%= setsRepsWeights[i].reps %> Weight <%= setsRepsWeights[i].weight %></div>
-        <% } %>
-    <% } %>
-    </div> 
+    <h5><%= workoutDay.date.toDateString() %> </h5>
+    <form action="">
+        <label for="title">Title</label>
+        <input type="text" name="title" value="<%= workoutDay.title %>">
+        <% for(let i = 0; i < workoutDay.exercises.length; i++){ %>
+        <br><label for="<%= workoutDay.exercises[i].name %>">Exercise</label> 
+        <input type="text" name="<%= workoutDay.exercises[i].name %>" value="<%= workoutDay.exercises[i].name %>">
+        <% const exercise = workoutDay.exercises[i]%> 
+        <% for(let i = 0; i < exercise.setsRepsWeights.length; i++) {%> 
+        <br> 
+        <label>Set <%= i+1 %> >></label>
+        <label for="exercise.setsRepsWeights.<%= i %>.reps">Reps</label>
+        <input type="text" name="exercise.setsRepsWeights.<%= i %>.reps" value="<%= exercise.setsRepsWeights[i].reps %>">
+        <label for="exercise.setsRepsWeights.<%= i %>.weight">Weight</label>
+        <input type="text" name="exercise.setsRepsWeights.<%= i %>.weight" value="<%= exercise.setsRepsWeights[i].weight %>">
+        <% } %> 
+        <% } %>  
+    </form>    
+</body>
