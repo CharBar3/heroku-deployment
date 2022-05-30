@@ -72,6 +72,8 @@ app.get('/seed', (req, res) => {
   })
 })
 
+
+
 app.get('/' , (req, res) => {
   res.redirect('/dashboard')
 });
