@@ -9,6 +9,7 @@
 <body>
     <%- include('../partials/nav.ejs') %> 
     <h1><%= workoutDay.title %></h1>
+    <h3><%= workoutDay.date.toDateString() %> </h3>
     <div>
     <% for(let i = 0; i < workoutDay.exercises.length; i++) { %>
         <% const workoutExercise = workoutDay.exercises[i] %> 
@@ -18,10 +19,8 @@
         <div>Set <%= i+1 %>: Reps <%= setsRepsWeights[i].reps %> Weight <%= setsRepsWeights[i].weight %></div>
         <% } %>
     <% } %>
-    <form action="dashboard/<%=  %>/edit"></form>
+    <a href="/dashboard/<%= workoutDay._id %>/edit"><button>Edit</button></a>
     </div> 
-    
-
     
 </body>
 </html>

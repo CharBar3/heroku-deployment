@@ -8,13 +8,12 @@
 </head>
 <body>
     <%- include('../partials/nav.ejs') %> 
-    <h1><%= workoutDay.title %></h1>
+    <h1><%= workoutDay.title %> EDIT</h1>
     <div>
     <% for(let i = 0; i < workoutDay.exercises.length; i++) { %>
         <% const workoutExercise = workoutDay.exercises[i] %> 
         <div><%= workoutExercise.name %></div> 
         <% const setsRepsWeights = workoutExercise.setsRepsWeights %> 
-        <% console.log(workoutExercise) %> 
         <% for(let i = 0; i < setsRepsWeights.length; i++) { %>
         <div>Set <%= i+1 %>: Reps <%= setsRepsWeights[i].reps %> Weight <%= setsRepsWeights[i].weight %></div>
         <% } %>

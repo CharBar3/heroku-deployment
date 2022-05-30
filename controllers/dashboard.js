@@ -12,6 +12,16 @@ Router.get('/', (req, res) => {
     })
 })
 
+// Edit
+
+Router.get('/:id/edit', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+        res.render('./dashboard/edit.ejs', {
+            workoutDay: foundWorkoutDay
+        })
+    })
+})
+
 // Show
 Router.get('/:id', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
