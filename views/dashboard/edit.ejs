@@ -10,41 +10,31 @@
     <%- include('../partials/nav.ejs') %> 
     <h1><%= workoutDay.title %> EDIT</h1>
     <h5><%= workoutDay.date.toDateString() %> </h5>
+
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
-        <label for="title">Title</label>
         <input type="text" name="title" value="<%= workoutDay.title %>">
-        <% for(let i = 0; i < workoutDay.exercises.length; i++){ %>
-        <br><label for="<%= workoutDay.exercises[i].name %>">Exercise</label> 
-        <input type="text" name="Exercise-<%= i %>" value="<%= workoutDay.exercises[i].name %>">
-        <% const exercise = workoutDay.exercises[i]%> 
-        <% for(let j = 0; j < exercise.sets.length; j++) {%> 
-        <br> 
-        <label>Set <%= j+1 %> >></label>
-        <label for="Exercise-<%= i %>-Set-<%= j %>-Reps">Reps</label>
-        <input type="text" name="Exercise-<%= i %>-Set-<%= j %>-Reps" value="<%= exercise.sets[j].reps %>">
-        <label for="Exercise-<%= i %>-Set-<%= j %>-Weight">Weight</label>
-        <input type="text" name="Exercise-<%= i %>-Set-<%= j %>-Weight" value="<%= exercise.sets[j].weight %>">
-        <% } %> 
-        <% } %>  
-        <br><input type="submit" value="Update!">
-       
+        <input type="text" name="date" value="<%= workoutDay.date.toDateString() %>">
+        <input type="submit" value="Update!">
+    </form>
+    
     <% const exercises = workoutDay.exercises %> 
-    <% for (let i = 0; i < exercises.length; i++) { %>
     <% console.log('start')  %>
-    </form> 
+    <% for (let i = 0; i < exercises.length; i++) { %>
         <% const exercise = exercises[i] %> 
         <form id="<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <label for="name">Name</label>
         <input type="text" name="name" value="<%= exercise.name %>">
         <% for (let index = 0; index < exercise.sets.length; index++) {%> 
         <br><label>Set <%= index + 1 %> >> </label>
-        <input type="text" name="set <%= index %> reps" value="<%= exercise.sets[index].reps %>">
-        <input type="text" name="set <%= index %> weight" value="<%= exercise.sets[index].weight %>">
+        <label for="set<%= index + 1 %>reps">Reps</label>
+        <input type="text" name="reps<%= index + 1 %>" value="<%= exercise.sets[index].reps %>">
+        <label for="set<%= index + 1 %>weights">Weight</label>
+        <input type="text" name="weights<%= index + 1 %>" value="<%= exercise.sets[index].weight %>">
         <% } %> 
         <br><label for="notes">Notes</label>
         <br><textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        <input type="hidden" name="ID" value="<%= i %>">
         <br><input type="submit" value="Update!">
     </form> 
     <% } %>  
-    
 </body>

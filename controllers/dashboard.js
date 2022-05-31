@@ -1,4 +1,5 @@
 const express = require('express')
+// const { update } = require('../models/workout')
 const Workout = require('../models/workout')
 const Router = express.Router()
 
@@ -14,26 +15,89 @@ Router.get('/', (req, res) => {
 // Update
 Router.patch('/:id', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
-        
-        console.log(req.body)
-        const exercises = foundWorkoutDay.exercises
-        for (const [key, value] of Object.entries(exercises)){
-            // console.log(value)
-            
-            for (let index = 0; index < value.sets.length; index++) {
-                const element = value.sets[index];
-                // console.log(element)
+        // console.log(foundWorkoutDay)
+        const exerciseID = parseInt(req.body.ID)
+        // foundWorkoutDay.exercises[exerciseID].name = req.body.name
+        const exerciseToUpdate = req.body
+        // console.log('before we did anything to it', exerciseToUpdate)
+        const exerciseToUpdateArray = Object.entries(exerciseToUpdate)
+        const newSets = []
+        for (let index = 0; index < exerciseToUpdateArray.length; index++) {
+            const value = exerciseToUpdateArray[index]
+            if (value[0].startsWith('reps')) {
+                const lastCharacter = value[0].substring(value[0].length-1)
+                newSets[lastCharacter-1] = {reps: value[1]}
+            }
+            if (value[0].startsWith('weights')) {
+                const lastCharacter = value[0].substring(value[0].length-1)
+                newSets[lastCharacter-1].weight = value[1]
             }
         }
-        // for (let index = 0; index < exercises.length; index++) {
-        //     const element = exercises[index];
-        //     console.log(element)
+
+        const updateExercise = {
+            name: exerciseToUpdate.name,
+            sets: newSets,
+            notes: 'notes updated'
+        }
+
+        // console.log(updateExercise)
+
+        req.body.exercises = foundWorkoutDay.exercises
+        req.body.exercises[exerciseID] = updateExercise
+        
+
+        // {
+        //     name: 'shoulder press',
+        //     sets: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
+        //     notes: 'fealt strong the whole way through'
         // }
 
-
-        
-        res.redirect(`/dashboard/${req.params.id}`)
+        Workout.findByIdAndUpdate(req.params.id, req.body,
+            {
+                new: true
+            },
+            (err, updatedWorkoutDay) => {
+            
+            
+            // console.log('from req.body >>> ', req.body)
+            const exerciseID = parseInt(req.body.ID)
+            
+            // const exercises = updatedWorkoutDay.exercises
+            // console.log('from exercises', exercises[ID])
+    
+            // updatedWorkoutDay.exercises[exerciseID].name = req.body.name
+            // console.log(updatedWorkoutDay.exercises[exerciseID].name)
+                // if (updatedWorkoutDay.save()) {
+                //     console.log("success")
+                // }
+                updatedWorkoutDay.save().then( () => res.redirect(`/dashboard/${req.params.id}/edit`))
+    
+            // console.log(updatedWorkoutDay)
+    
+            // for (const [key, value] of Object.entries(exercises)){
+                // console.log(value)
+                
+                // for (let index = 0; index < value.sets.length; index++) {
+                //     const element = value.sets[index];
+                    // console.log(element)
+            //     }
+            // }
+            // for (let index = 0; index < exercises.length; index++) {
+            //     const element = exercises[index];
+            //     console.log(element)
+            // }
+            
+        })
     })
+    
+    // find by id
+
+    // pull exercises in find by id
+
+    // 
+    
+
+    // write the logic for exercises out here so that it'll fucking work
 
 
     
