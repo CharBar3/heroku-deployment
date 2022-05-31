@@ -86,7 +86,7 @@ Router.patch('/:id', (req, res) => {
 })
 
 // Create
-const emptyWorkout = require('../models/templeteWorkout.js')
+const emptyWorkout = require('../models/templateWorkout.js')
 Router.post('/create', (req, res) => {
     Workout.create(emptyWorkout, (error, data) => {
         res.redirect(`/dashboard/${data.id}/edit`)
