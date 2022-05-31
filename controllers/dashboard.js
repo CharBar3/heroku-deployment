@@ -12,6 +12,15 @@ Router.get('/', (req, res) => {
     })
 })
 
+// Delete
+Router.delete('/:id', (req, res) => {
+    Workout.findByIdAndDelete(req.params.id, (err, foundWorkoutDay) => {
+        console.log(foundWorkoutDay)
+        console.log(foundWorkoutDay.title + ' Deleted')
+        res.redirect('/')
+    })
+})
+
 
 // Update 
 Router.patch('/:id', (req, res) => {
@@ -34,7 +43,7 @@ Router.patch('/:id', (req, res) => {
         const updateExercise = {
             name: exerciseToUpdate.name,
             sets: newSets,
-            notes: 'notes updated'
+            notes: exerciseToUpdate.notes
         }
         req.body.exercises = foundWorkoutDay.exercises
         req.body.exercises[exerciseID] = updateExercise

@@ -18,7 +18,6 @@
     </form>
     
     <% const exercises = workoutDay.exercises %> 
-    <% console.log('start')  %>
     <% for (let i = 0; i < exercises.length; i++) { %>
         <% const exercise = exercises[i] %> 
         <form id="<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
@@ -32,7 +31,7 @@
         <input type="text" name="weights<%= index + 1 %>" value="<%= exercise.sets[index].weight %>">
         <% } %> 
         <br><label for="notes">Notes</label>
-        <br><textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        <br><textarea name="notes" id="notes" cols="30" rows="10"><%= exercise.notes %></textarea>
         <input type="hidden" name="ID" value="<%= i %>">
         <br><input type="submit" value="Update!">
     </form> 
