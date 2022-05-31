@@ -27,5 +27,24 @@
         <% } %> 
         <% } %>  
         <br><input type="submit" value="Update!">
-    </form>    
+       
+    <% const exercises = workoutDay.exercises %> 
+    <% for (let i = 0; i < exercises.length; i++) { %>
+    <% console.log('start')  %>
+    </form> 
+        <% const exercise = exercises[i] %> 
+        <form id="<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="<%= exercise.name %>">
+        <% for (let index = 0; index < exercise.sets.length; index++) {%> 
+        <br><label>Set <%= index + 1 %> >> </label>
+        <input type="text" name="set <%= index %> reps" value="<%= exercise.sets[index].reps %>">
+        <input type="text" name="set <%= index %> weight" value="<%= exercise.sets[index].weight %>">
+        <% } %> 
+        <br><label for="notes">Notes</label>
+        <br><textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        <br><input type="submit" value="Update!">
+    </form> 
+    <% } %>  
+    
 </body>

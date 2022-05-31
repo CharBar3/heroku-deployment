@@ -13,23 +13,46 @@ Router.get('/', (req, res) => {
 
 // Update
 Router.patch('/:id', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+        
+        console.log(req.body)
+        const exercises = foundWorkoutDay.exercises
+        for (const [key, value] of Object.entries(exercises)){
+            // console.log(value)
+            
+            for (let index = 0; index < value.sets.length; index++) {
+                const element = value.sets[index];
+                // console.log(element)
+            }
+        }
+        // for (let index = 0; index < exercises.length; index++) {
+        //     const element = exercises[index];
+        //     console.log(element)
+        // }
+
+
+        
+        res.redirect(`/dashboard/${req.params.id}`)
+    })
+
 
     
 
-    Workout.findByIdAndUpdate(
-        req.params.id, 
-        req.body, 
-        { new: true }, 
-        (err, foundWorkoutDay) => {
-            console.log(req.body)
-            // console.log(req.body.exercises[0].sets[0].reps)
-        
-        console.log(foundWorkoutDay.exercises[0].name)
-        console.log(foundWorkoutDay.exercises[0].sets[0].reps)
-        foundWorkoutDay.exercises[0].sets[0].reps
 
-        res.redirect(`/dashboard/${req.params.id}`)
-    })
+    // Workout.findByIdAndUpdate(
+    //     req.params.id, 
+    //     req.body, 
+    //     { new: true }, 
+    //     (err, foundWorkoutDay) => {
+    //         // console.log(req.body)
+    //         // console.log(req.body.exercises[0].sets[0].reps)
+    //     console.log(foundWorkoutDay)
+    //     // console.log(foundWorkoutDay.exercises[0].name)
+    //     // console.log(foundWorkoutDay.exercises[0].sets[0].reps)
+    //     // foundWorkoutDay.exercises[0].sets[0].reps
+
+    //     res.redirect(`/dashboard/${req.params.id}`)
+    // })
 
 
 
