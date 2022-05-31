@@ -29,6 +29,22 @@ Router.delete('/:id', (req, res) => {
 })
 
 // Update 
+const newExercise = require('../models/newExercise')
+Router.patch('/:id/addexercise', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+    foundWorkoutDay.exercises.unshift(newExercise)
+    req.body.exercises = foundWorkoutDay.exercises
+    Workout.findByIdAndUpdate(req.params.id, req.body, 
+        {
+        new: true
+        },
+        (err, updatedWorkoutDay) => {
+        console.log(updatedWorkoutDay)
+        res.redirect(`/dashboard/${req.params.id}/edit`)
+    })
+    })
+})
+
 Router.patch('/:id/removeexercise', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
     const exerciseID = parseInt(req.body.ID)

@@ -64,7 +64,7 @@ app.use('/dashboard', dashboardController)
 //localhost:3000
 
 // Seed Route
-const seedWorkouts = require('./models/seedWorkouts.js')
+const seedWorkouts = require('./models/seedWorkouts')
 app.get('/seed', (req, res) => {
   Workout.deleteMany({}, (error, allWorkouts) => {})
   Workout.create(seedWorkouts, (error, data) => {

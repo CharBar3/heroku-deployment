@@ -17,7 +17,9 @@
         <input type="submit" value="Update!">
     </form>
 
-    
+    <form action="/dashboard/<%= workoutDay._id %>/addexercise?_method=PATCH" method="POST">
+        <input type="submit" value="add exercise">
+    </form>
     
     <% const exercises = workoutDay.exercises %> 
     <% for (let i = 0; i < exercises.length; i++) { %>
