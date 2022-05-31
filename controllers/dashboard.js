@@ -13,6 +13,12 @@ Router.get('/', (req, res) => {
     })
 })
 
+// New
+Router.get('/new', (req, res) => {
+    res.render('dashboard/new.ejs')
+})
+
+
 // Delete
 Router.delete('/:id', (req, res) => {
     Workout.findByIdAndDelete(req.params.id, (err, foundWorkoutDay) => {
@@ -23,7 +29,7 @@ Router.delete('/:id', (req, res) => {
 })
 
 // Update 
-Router.patch('/:id/exerciseupdate', (req, res) => {
+Router.patch('/:id/removeexercise', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
     const exerciseID = parseInt(req.body.ID)
     foundWorkoutDay.exercises.splice(exerciseID, 1)
@@ -79,8 +85,15 @@ Router.patch('/:id', (req, res) => {
     })
 })
 
-// Edit
+// Create
+const emptyWorkout = require('../models/templeteWorkout.js')
+Router.post('/create', (req, res) => {
+    Workout.create(emptyWorkout, (error, data) => {
+        res.redirect(`/dashboard/${data.id}/edit`)
+    })  
+})
 
+// Edit
 Router.get('/:id/edit', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
         res.render('./dashboard/edit.ejs', {
