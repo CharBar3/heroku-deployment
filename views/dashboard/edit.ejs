@@ -13,7 +13,7 @@
 
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <input type="text" name="title" value="<%= workoutDay.title %>">
-        <input type="text" name="date" value="<%= workoutDay.date.toDateString() %>">
+        <input type="date" name="date" value="<%= workoutDay.date.toISOString().split('T')[0] %>">
         <input type="submit" value="Update!">
     </form>
 
