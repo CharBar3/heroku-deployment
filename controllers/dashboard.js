@@ -12,7 +12,8 @@ Router.get('/', (req, res) => {
     })
 })
 
-// Update
+
+// Update 
 Router.patch('/:id', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
         const exerciseID = parseInt(req.body.ID)
