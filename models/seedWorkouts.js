@@ -4,7 +4,7 @@ module.exports = [
         exercises: [{
             name: 'shoulder press',
             sets: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
-            notes: 'fealt strong the whole way through'
+            notes: 'Felt strong the whole way through'
         },
         {
             name: 'bent over barbell row',

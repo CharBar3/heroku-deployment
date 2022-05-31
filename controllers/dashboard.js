@@ -1,4 +1,5 @@
 const express = require('express')
+const { findByIdAndUpdate } = require('../models/workout')
 // const { update } = require('../models/workout')
 const Workout = require('../models/workout')
 const Router = express.Router()
@@ -21,8 +22,25 @@ Router.delete('/:id', (req, res) => {
     })
 })
 
-
 // Update 
+Router.patch('/:id/exerciseupdate', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+    const exerciseID = parseInt(req.body.ID)
+    foundWorkoutDay.exercises.splice(exerciseID, 1)
+    req.body.exercises = foundWorkoutDay.exercises
+    console.log(req.body.exercises)
+    
+    Workout.findByIdAndUpdate(req.params.id, req.body, 
+        {
+        new: true
+        },
+        (err, updatedWorkoutDay) => {
+        console.log(updatedWorkoutDay)
+        res.redirect(`/dashboard/${req.params.id}/edit`)
+    })
+    })
+})
+
 Router.patch('/:id', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
         const exerciseID = parseInt(req.body.ID)
@@ -46,6 +64,7 @@ Router.patch('/:id', (req, res) => {
             notes: exerciseToUpdate.notes
         }
         req.body.exercises = foundWorkoutDay.exercises
+
         req.body.exercises[exerciseID] = updateExercise
         Workout.findByIdAndUpdate(req.params.id, req.body,
             {
@@ -53,6 +72,8 @@ Router.patch('/:id', (req, res) => {
             },
             (err, updatedWorkoutDay) => {
             
+                
+
             res.redirect(`/dashboard/${req.params.id}/edit`)
         })
     })

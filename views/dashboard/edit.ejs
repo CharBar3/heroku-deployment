@@ -35,5 +35,9 @@
         <input type="hidden" name="ID" value="<%= i %>">
         <br><input type="submit" value="Update!">
     </form> 
+    <form action="/dashboard/<%= workoutDay._id %>/exerciseupdate?_method=PATCH" method="POST">
+        <input type="hidden" name="ID" value="<%= i %>">
+        <input type="submit" value="Delete">
+    </form>
     <% } %>  
 </body>
