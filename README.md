@@ -1,4 +1,4 @@
 # heroku-deployment
 
 
-[Start Application](https://heroku-lab-charlesb.herokuapp.com/).
+[Start Application](https://dashboard.heroku.com/apps/workout-time).
