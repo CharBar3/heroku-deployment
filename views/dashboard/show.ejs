@@ -14,7 +14,7 @@
     <div>
     <% for(let i = 0; i < workoutDay.exercises.length; i++) { %>
         <% const workoutExercise = workoutDay.exercises[i] %> 
-        <div><%= workoutExercise.name %></div> 
+        <h3><%= workoutExercise.name %></h3> 
         <% const sets = workoutExercise.sets %> 
         <% for(let i = 0; i < sets.length; i++) { %>
         <div>Set <%= i+1 %>: Reps <%= sets[i].reps %> Weight <%= sets[i].weight %></div>

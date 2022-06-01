@@ -10,11 +10,12 @@
 <body>
     <%- include('../partials/nav.ejs') %> 
     <h1>Welcome</h1>
-    <a href="dashboard/new"><button>New Workout!</button></a>
+    <!-- <a href="dashboard/new"><button>New Workout!</button></a> -->
     <% for (let i = 0; i < workouts.length; i++){ %> 
     <h2><a href="dashboard/<%= workouts[i]._id %> "><%= workouts[i].title %></a> <%= workouts[i].date.toDateString() %></h2> 
     <form action="dashboard/<%= workouts[i]._id %>?_method=DELETE" method="POST">
-        <input class="deleteButton" type="submit" value="Delete">
+        <!-- <input class="deleteButton" type="submit" value="Delete"> -->
+        <button class="deleteButton" type="submit">Delete</button>
     </form>
     <% } %> 
 </body>

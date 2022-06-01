@@ -1,9 +1,32 @@
 body {
-    background-color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.638);
+}
+
+input {
+    width: 100px;
+    background-color: black;
+    color: white;
+    border-style: solid;
+}
+
+input:hover {
+    border-color: lightgreen;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    border-style: dashed;
+}
+
+button:hover {
+    border-style: solid;
 }
 
 .deleteButton {
-    background-color: red;
+    border-color: red;
 }
 
 .exerciseButtons {
@@ -11,6 +34,27 @@ body {
     flex-direction: row;
 }
 
-input {
-    width: 100px;
+#addExercise {
+    width: 150px;
+    height: 50px;
+}
+
+textarea {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.638);
+    width: 354px;
+    height: 100px;
+}
+
+textarea:hover {
+    border-color: lightgreen;
+}
+
+a {
+    color: rgba(221, 160, 221, 0.714);
+}
+
+a:hover {
+    color: lightgreen;
 }

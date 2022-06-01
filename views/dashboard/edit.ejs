@@ -16,11 +16,13 @@
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <input type="text" name="title" value="<%= workoutDay.title %>">
         <input type="date" name="date" value="<%= workoutDay.date.toISOString().split('T')[0] %>">
-        <input type="submit" value="Update!">
+        <!-- <input type="submit" value="<< Save Changes"> -->
+        <button type="submit">Save Date & Time</button>
     </form>
 
     <form action="/dashboard/<%= workoutDay._id %>/addexercise?_method=PATCH" method="POST">
-        <input type="submit" value="add exercise">
+        <!-- <input id= addExercise type="submit" value="Add Exercise"> -->
+        <button id="addExercise" type="submit">Add Exercise</button>
     </form>
     
     <!-- loops through the exercises array in workout day -->
@@ -52,7 +54,7 @@
     <div class="exerciseButtons">
 
     <!-- submits the form above -->
-    <button type="submit" form="exercise<%= i %>">Update!</button>
+    <button type="submit" form="exercise<%= i %>">Save Changes</button>
 
     <!-- adds a set to a single exercise based on id -->
     <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
