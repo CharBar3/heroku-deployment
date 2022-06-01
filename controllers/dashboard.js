@@ -112,7 +112,6 @@ Router.patch('/:id', (req, res) => {
             notes: exerciseToUpdate.notes
         }
         req.body.exercises = foundWorkoutDay.exercises
-
         req.body.exercises[exerciseID] = updateExercise
         Workout.findByIdAndUpdate(req.params.id, req.body,
             {

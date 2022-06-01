@@ -5,3 +5,8 @@ body {
 .deleteButton {
     background-color: red;
 }
+
+.exerciseButtons {
+    display: flex;
+    flex-direction: row;
+}

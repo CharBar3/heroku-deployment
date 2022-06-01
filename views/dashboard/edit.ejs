@@ -25,7 +25,7 @@
     <% const exercises = workoutDay.exercises %> 
     <% for (let i = 0; i < exercises.length; i++) { %>
         <% const exercise = exercises[i] %> 
-        <form id="<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
+        <form id="exercise<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <label for="name">Name</label>
         <input type="text" name="name" value="<%= exercise.name %>">
         <% for (let index = 0; index < exercise.sets.length; index++) {%> 
@@ -38,9 +38,10 @@
         <br><label for="notes">Notes</label>
         <br><textarea name="notes" id="notes" cols="30" rows="10"><%= exercise.notes %></textarea>
         <input type="hidden" name="ID" value="<%= i %>">
-        <br><input type="submit" value="Update!">
+        <!-- <br><input type="submit" value="Update!"> -->
     </form> 
-    <div class="exercise buttons">
+    <div class="exerciseButtons">
+    <button type="submit" form="exercise<%= i %>">Update!</button>
     <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
         <input type="submit" value="+">
