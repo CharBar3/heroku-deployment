@@ -39,6 +39,14 @@
         <input type="hidden" name="ID" value="<%= i %>">
         <br><input type="submit" value="Update!">
     </form> 
+    <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
+        <input type="hidden" name="ID" value="<%= i %>">
+        <input type="submit" value="+">
+    </form>
+    <form action="/dashboard/<%= workoutDay._id %>/removeset?_method=PATCH" method="POST">
+        <input type="hidden" name="ID" value="<%= i %>">
+        <input type="submit" value="-">
+    </form>
     <form action="/dashboard/<%= workoutDay._id %>/removeexercise?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
         <input type="submit" value="Delete">

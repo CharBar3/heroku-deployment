@@ -22,13 +22,43 @@ Router.get('/new', (req, res) => {
 // Delete
 Router.delete('/:id', (req, res) => {
     Workout.findByIdAndDelete(req.params.id, (err, foundWorkoutDay) => {
-        console.log(foundWorkoutDay)
-        console.log(foundWorkoutDay.title + ' Deleted')
         res.redirect('/')
     })
 })
 
 // Update 
+
+Router.patch('/:id/addset', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+    const exerciseID = parseInt(req.body.ID)
+    foundWorkoutDay.exercises[exerciseID].sets.push(`reps: 0, weight: '0lbs'}`)
+    req.body.exercises = foundWorkoutDay.exercises
+    
+    Workout.findByIdAndUpdate(req.params.id, req.body, 
+        {
+        new: true
+        },
+        (err, updatedWorkoutDay) => {
+        res.redirect(`/dashboard/${req.params.id}/edit`)
+    })
+    })
+})
+
+Router.patch('/:id/removeset', (req, res) => {
+    Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+    const exerciseID = parseInt(req.body.ID)
+    foundWorkoutDay.exercises[exerciseID].sets.pop()
+    req.body.exercises = foundWorkoutDay.exercises
+    Workout.findByIdAndUpdate(req.params.id, req.body, 
+        {
+        new: true
+        },
+        (err, updatedWorkoutDay) => {
+        res.redirect(`/dashboard/${req.params.id}/edit`)
+    })
+    })
+})
+
 const newExercise = require('../models/newExercise')
 Router.patch('/:id/addexercise', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
@@ -39,7 +69,6 @@ Router.patch('/:id/addexercise', (req, res) => {
         new: true
         },
         (err, updatedWorkoutDay) => {
-        console.log(updatedWorkoutDay)
         res.redirect(`/dashboard/${req.params.id}/edit`)
     })
     })
@@ -50,14 +79,11 @@ Router.patch('/:id/removeexercise', (req, res) => {
     const exerciseID = parseInt(req.body.ID)
     foundWorkoutDay.exercises.splice(exerciseID, 1)
     req.body.exercises = foundWorkoutDay.exercises
-    console.log(req.body.exercises)
-    
     Workout.findByIdAndUpdate(req.params.id, req.body, 
         {
         new: true
         },
         (err, updatedWorkoutDay) => {
-        console.log(updatedWorkoutDay)
         res.redirect(`/dashboard/${req.params.id}/edit`)
     })
     })
