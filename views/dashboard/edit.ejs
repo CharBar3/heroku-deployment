@@ -9,6 +9,7 @@
 </head>
 <body>
     <%- include('../partials/nav.ejs') %> 
+
     <h1><%= workoutDay.title %> EDIT</h1>
     <h5><%= workoutDay.date.toDateString() %></h5>
 
@@ -22,37 +23,58 @@
         <input type="submit" value="add exercise">
     </form>
     
+    <!-- loops through the exercises array in workout day -->
     <% const exercises = workoutDay.exercises %> 
     <% for (let i = 0; i < exercises.length; i++) { %>
         <% const exercise = exercises[i] %> 
         <form id="exercise<%= i %>" action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
-        <label for="name">Name</label>
+        <label for="name">Exercise</label>
         <input type="text" name="name" value="<%= exercise.name %>">
+
+        <!-- loops through each set in the specific exercise and displays the information -->
         <% for (let index = 0; index < exercise.sets.length; index++) {%> 
-        <br><label>Set <%= index + 1 %> >> </label>
+        <br><label>Set <%= index + 1 %>: </label>
         <label for="set<%= index + 1 %>reps">Reps</label>
         <input type="text" name="reps<%= index + 1 %>" value="<%= exercise.sets[index].reps %>">
         <label for="set<%= index + 1 %>weights">Weight</label>
         <input type="text" name="weights<%= index + 1 %>" value="<%= exercise.sets[index].weight %>">
+        
+        <!-- need to get the id from this button in the body of the remove set form -->
+        <!-- <button type="submit" form="removeSetForm" >-</button>  -->
         <% } %> 
         <br><label for="notes">Notes</label>
         <br><textarea name="notes" id="notes" cols="30" rows="10"><%= exercise.notes %></textarea>
         <input type="hidden" name="ID" value="<%= i %>">
         <!-- <br><input type="submit" value="Update!"> -->
     </form> 
+
+    <!-- div for styling buttons -->
     <div class="exerciseButtons">
+
+    <!-- submits the form above -->
     <button type="submit" form="exercise<%= i %>">Update!</button>
+
+    <!-- adds a set to a single exercise based on id -->
     <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
-        <input type="submit" value="+">
+        <!-- <input type="submit" value="Add Set"> -->
+        <button type="submit">Add Set</button>
     </form>
-    <form action="/dashboard/<%= workoutDay._id %>/removeset?_method=PATCH" method="POST">
+    
+    <!-- removes the last set from a form trying to get a set id in here -->
+    <!-- so we can remove each individual set based on a remove button next to it -->
+     
+    <form id="removeSetForm" action="/dashboard/<%= workoutDay._id %>/removeset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
-        <input type="submit" value="-">
+        <!-- <input type="submit" value="Remove Set"> -->
+        <button type="submit">Remove Set</button>
     </form>
+
+    <!-- removes one whole exercise from the workout day -->
     <form action="/dashboard/<%= workoutDay._id %>/removeexercise?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
-        <input class="deleteButton" type="submit" value="Delete">
+        <!-- <input class="deleteButton" type="submit" value="Delete"> -->
+        <button class="deleteButton" type="submit">Delete</button>
     </form>
     </div>
     <% } %>  

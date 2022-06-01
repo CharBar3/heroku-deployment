@@ -46,9 +46,14 @@ Router.patch('/:id/addset', (req, res) => {
 
 Router.patch('/:id/removeset', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
+    console.log(req.body)
     const exerciseID = parseInt(req.body.ID)
+    // const setID = parseInt(req.body.setID)
+    // console.log(exerciseID)
+
     foundWorkoutDay.exercises[exerciseID].sets.pop()
     req.body.exercises = foundWorkoutDay.exercises
+
     Workout.findByIdAndUpdate(req.params.id, req.body, 
         {
         new: true
@@ -97,6 +102,7 @@ Router.patch('/:id', (req, res) => {
         const newSets = []
         for (let index = 0; index < exerciseToUpdateArray.length; index++) {
             const value = exerciseToUpdateArray[index]
+            // what if you're doing more than 9 sets? you need something that handles double digit sets 
             if (value[0].startsWith('reps')) {
                 const lastCharacter = value[0].substring(value[0].length-1)
                 newSets[lastCharacter-1] = {reps: value[1]}
