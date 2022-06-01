@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>EDIT</title>
 </head>
 <body>
     <%- include('../partials/nav.ejs') %> 
     <h1><%= workoutDay.title %> EDIT</h1>
-    <h5><%= workoutDay.date.toDateString() %> </h5>
+    <h5><%= workoutDay.date.toDateString() %></h5>
 
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <input type="text" name="title" value="<%= workoutDay.title %>">
@@ -39,6 +40,7 @@
         <input type="hidden" name="ID" value="<%= i %>">
         <br><input type="submit" value="Update!">
     </form> 
+    <div class="exercise buttons">
     <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
         <input type="submit" value="+">
@@ -49,7 +51,8 @@
     </form>
     <form action="/dashboard/<%= workoutDay._id %>/removeexercise?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
-        <input type="submit" value="Delete">
+        <input class="deleteButton" type="submit" value="Delete">
     </form>
+    </div>
     <% } %>  
 </body>

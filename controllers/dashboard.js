@@ -1,8 +1,8 @@
 const express = require('express')
 const { findByIdAndUpdate } = require('../models/workout')
-// const { update } = require('../models/workout')
 const Workout = require('../models/workout')
 const Router = express.Router()
+
 
 // INDUCES (index, new, delete, update, create, edit, show)
 
@@ -129,6 +129,7 @@ Router.patch('/:id', (req, res) => {
 
 // Create
 const emptyWorkout = require('../models/templateWorkout.js')
+const { append } = require('express/lib/response')
 Router.post('/create', (req, res) => {
     Workout.create(emptyWorkout, (error, data) => {
         res.redirect(`/dashboard/${data.id}/edit`)

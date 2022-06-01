@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
 </head>
 <body>
     <%- include('../partials/nav.ejs') %> 
@@ -13,7 +14,7 @@
     <% for (let i = 0; i < workouts.length; i++){ %> 
     <h2><a href="dashboard/<%= workouts[i]._id %> "><%= workouts[i].title %></a> <%= workouts[i].date.toDateString() %></h2> 
     <form action="dashboard/<%= workouts[i]._id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete">
+        <input class="deleteButton" type="submit" value="Delete">
     </form>
     <% } %> 
 </body>
