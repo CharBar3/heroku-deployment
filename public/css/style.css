@@ -2,6 +2,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     color: rgba(255, 255, 255, 0.638);
+    display: flex;
+
+    width: 370px;
+    flex-direction: column;
+    align-content: center;
 }
 
 input {
@@ -9,16 +14,19 @@ input {
     background-color: black;
     color: white;
     border-style: solid;
+    margin-top: 5px;
 }
 
 input:hover {
     border-color: lightgreen;
+    /* color: lightgreen; */
 }
 
 button {
     background-color: transparent;
     color: white;
     border-style: dashed;
+    
 }
 
 button:hover {
@@ -29,9 +37,14 @@ button:hover {
     border-color: red;
 }
 
+.deleteButton:hover {
+    color: red;
+}
+
 .exerciseButtons {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 #addExercise {
@@ -57,4 +70,52 @@ a {
 
 a:hover {
     color: lightgreen;
+}
+
+.createButton {
+    width: 100px;
+    height: 50px;
+}
+
+.createButton:hover {
+    border: solid;
+    border-color: lightgreen;
+    color: lightgreen;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+}
+
+/* .exerciseButtons {
+    display: flex;
+    justify-content: space-around;
+} */
+
+.editPageHeadings {
+    font-size: medium;
+}
+
+h1 {
+    max-height: 10px;
+}
+
+form {
+    padding-top: 5px;
+}
+
+.saveChanges:hover {
+    color: lightgreen;
+    border: solid;
+}
+
+.showEditButton {
+    width: 100px;
+    height: 50px;
+}
+
+.showEditButton:hover {
+    color: lightgreen;
+    border-color: lightgreen;
 }

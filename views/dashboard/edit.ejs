@@ -7,23 +7,27 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>EDIT</title>
 </head>
+<!-- <div class="centerDiv"> -->
 <body>
     <%- include('../partials/nav.ejs') %> 
 
     <h1><%= workoutDay.title %> EDIT</h1>
-    <h5><%= workoutDay.date.toDateString() %></h5>
-
+    <h3><%= workoutDay.date.toDateString() %></h3>
+    <div class="dateTime">
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
         <input type="text" name="title" value="<%= workoutDay.title %>">
         <input type="date" name="date" value="<%= workoutDay.date.toISOString().split('T')[0] %>">
         <!-- <input type="submit" value="<< Save Changes"> -->
-        <button type="submit">Save Date & Time</button>
+        <button class="saveChanges" type="submit">Save Date & Time</button>
     </form>
+    </div>
 
+    <div class="centerDiv">
     <form action="/dashboard/<%= workoutDay._id %>/addexercise?_method=PATCH" method="POST">
         <!-- <input id= addExercise type="submit" value="Add Exercise"> -->
-        <button id="addExercise" type="submit">Add Exercise</button>
+        <button class="createButton" type="submit">Add Exercise</button>
     </form>
+    </div>
     
     <!-- loops through the exercises array in workout day -->
     <% const exercises = workoutDay.exercises %> 
@@ -54,7 +58,7 @@
     <div class="exerciseButtons">
 
     <!-- submits the form above -->
-    <button type="submit" form="exercise<%= i %>">Save Changes</button>
+    <button class="saveChanges" type="submit" form="exercise<%= i %>">Save Changes</button>
 
     <!-- adds a set to a single exercise based on id -->
     <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
@@ -81,3 +85,4 @@
     </div>
     <% } %>  
 </body>
+<!-- </div> -->
