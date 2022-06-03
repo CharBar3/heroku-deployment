@@ -1,9 +1,20 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const workoutSchema = Schema({
+const setSchema = new Schema({
+    reps: Number,
+    weight: Number
+})
+
+const exerciseSchema = new Schema({
+        name: String,
+        sets: [setSchema],
+        notes: String
+})
+
+const workoutSchema = new Schema({
     title: {type: String, required: true},
-    exercises: {type: Array},
+    exercises: [exerciseSchema],
     date: {type: Date}
 })
 

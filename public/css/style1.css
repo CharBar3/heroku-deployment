@@ -1,3 +1,62 @@
+/* body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.638);
+    height: 100vh;
+    width: 100vh; 
+    justify-content: center;
+} */
+
+/* body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+} */
+
+/* ============== */
+/*   INDEX PAGE   */
+/* ============== */
+
+/* #dashboardPageWorkouts {
+    display: flex; */
+    /* align-content: flex-start; */
+    /* flex-flow: column wrap; */
+    /* flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 100vh;
+    width: 100vh; 
+    border-style: solid;
+    border-color: red;
+}
+
+.workoutDay {
+    min-width: 390px;
+    max-width: 390px;
+    max-height: 100px;
+    border-style: solid;
+    border-color: lightgreen;
+} */
+
+/* =========== */
+/*   Buttons   */
+/* =========== */
+
+/* button {
+    background-color: transparent;
+    color: white;
+    border-style: dashed;
+} */
+
+/* ===== */
+/*  old  */
+/* ===== */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: black;
@@ -19,15 +78,10 @@ input {
 
 input:hover {
     border-color: lightgreen;
-    /* color: lightgreen; */
+    color: lightgreen; 
 }
 
-button {
-    background-color: transparent;
-    color: white;
-    border-style: dashed;
-    
-}
+
 
 button:hover {
     border-style: solid;
@@ -88,11 +142,6 @@ a:hover {
     justify-content: center;
 }
 
-/* .exerciseButtons {
-    display: flex;
-    justify-content: space-around;
-} */
-
 .editPageHeadings {
     font-size: medium;
 }
@@ -118,4 +167,4 @@ form {
 .showEditButton:hover {
     color: lightgreen;
     border-color: lightgreen;
-}
+} 

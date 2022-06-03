@@ -1,34 +1,17 @@
 module.exports = [
     {
-        title: 'Back Day',
-        exercises: [{
-            name: 'shoulder press',
-            sets: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
-            notes: 'Felt strong the whole way through'
-        },
-        {
-            name: 'bent over barbell row',
-            sets: [{reps: 5, weight: '50lbs'}, {reps: 4, weight: '50lbs'}, {reps: 3, weight: '50lbs'}],
-            notes: 'could not finish strong on the last set'
-        }
-        ],
-        date: '7/7/2022'
-    },
-    {
         title: 'Leg Day',
         exercises: [{
-            name: 'leg press',
-            // sets are tracked by array.length
-            // reps and weight are objects inside the array
-            sets: [{reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}, {reps: 10, weight: '100lbs'}],
-            notes: 'Felt strong the whole way through'
+            name: 'Leg Press',
+            sets: [{reps: 20, weight: 200}, {reps: 20, weight: 200}, {reps: 20, weight: 200}],
+            notes: 'Feeling strong on leg press definitely should go up in weight next week.'
         },
         {
-            name: 'Squat',
-            sets: [{reps: 5, weight: '50lbs'}, {reps: 4, weight: '50lbs'}, {reps: 3, weight: '50lbs'}, {reps: 6, weight: '40lbs'}],
-            notes: 'could not finish strong on the last set'
+            name: 'Walking Lunges',
+            sets: [{reps: 26, weight: 50}, {reps: 26, weight: 50}, {reps: 26, weight: 50}],
+            notes: 'lunges are the worst exercise known to man'
         }
         ],
-        date: '7/8/2022'
-    },
+        date: '6/6/2022'
+    }
 ]
