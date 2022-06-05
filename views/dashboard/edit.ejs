@@ -5,17 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
     <title>EDIT</title>
 </head>
 <!-- <div class="centerDiv"> -->
 <body>
+     
     <%- include('../partials/nav.ejs') %> 
-
-    <h1><%= workoutDay.title %> EDIT</h1>
-    <h3><%= workoutDay.date.toDateString() %></h3>
+    <!-- old duplicate title to have them separate from the edit  -->
+    <!-- <h1><%# workoutDay.title %> EDIT</h1> -->
+    <!-- <h3><%# workoutDay.date.toDateString() %></h3> -->
     <div class="dateTime">
     <form action="/dashboard/<%= workoutDay._id %>?_method=PATCH" method="POST">
-        <input type="text" name="title" value="<%= workoutDay.title %>">
+        <input id="editPageTitleInput" type="text" name="title" value="<%= workoutDay.title %>" >
         <input type="date" name="date" value="<%= workoutDay.date.toISOString().split('T')[0] %>">
         <!-- <input type="submit" value="<< Save Changes"> -->
         <button class="saveChanges" type="submit">Save Title & Date</button>
@@ -39,20 +41,28 @@
 
         <!-- loops through each set in the specific exercise and displays the information -->
         <% for (let index = 0; index < exercise.sets.length; index++) {%> 
+        <div>
         <br><label>Set <%= index + 1 %>: </label>
         <label for="set<%= index + 1 %>reps">Reps</label>
         <input type="text" name="reps<%= index + 1 %>" value="<%= exercise.sets[index].reps %>">
         <label for="set<%= index + 1 %>weights">Weight</label>
         <input type="text" name="weights<%= index + 1 %>" value="<%= exercise.sets[index].weight %>">
-        
         <!-- need to get the id from this button in the body of the remove set form -->
-        <!-- <button type="submit" form="removeSetForm" >-</button>  -->
+        <a href="/dashboard/<%= workoutDay._id %>/<%= exercise._id %>/<%= exercise.sets[index]._id %>/removespecificset"><button type="button">-</button></a>
+        <!-- <button onclick="">-</button> -->
+        </div>
         <% } %> 
         <br><label for="notes">Notes</label>
         <br><textarea name="notes" id="notes" cols="30" rows="10"><%= exercise.notes %></textarea>
         <input type="hidden" name="ID" value="<%= i %>">
         <!-- <br><input type="submit" value="Update!"> -->
     </form> 
+
+    
+
+    <form id="removeSpecificSetForm" action="/dashboard/<%= workoutDay._id %>/removespecificset?_method=PATCH" method="POST">
+        <input type="hidden" name="ID" value="<%= i %>">
+    </form>
 
     <!-- div for styling buttons -->
     <div class="exerciseButtons">
@@ -61,7 +71,7 @@
     <button class="saveChanges" type="submit" form="exercise<%= i %>">Save Changes</button>
 
     <!-- adds a set to a single exercise based on id -->
-    <form action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
+    <form id="addSetForm" action="/dashboard/<%= workoutDay._id %>/addset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
         <!-- <input type="submit" value="Add Set"> -->
         <button type="submit">Add Set</button>
@@ -72,7 +82,6 @@
      
     <form id="removeSetForm" action="/dashboard/<%= workoutDay._id %>/removeset?_method=PATCH" method="POST">
         <input type="hidden" name="ID" value="<%= i %>">
-        <!-- <input type="submit" value="Remove Set"> -->
         <button type="submit">Remove Set</button>
     </form>
 
@@ -85,4 +94,11 @@
     </div>
     <% } %>  
 </body>
+
+<script>
+    const removeSet = (setToRemove) => {
+
+    }
+</script>
+
 <!-- </div> -->

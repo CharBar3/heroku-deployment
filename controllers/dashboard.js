@@ -28,6 +28,25 @@ Router.delete('/:id', (req, res) => {
 
 // Update 
 
+Router.get('/:id/:exerciseID/:setID/removespecificset', (req, res) => {
+    Workout.findById(req.params.id, (error, foundWorkoutDay) => {   
+        for (let index = 0; index < foundWorkoutDay.exercises.length; index++) {
+            const exercise = foundWorkoutDay.exercises[index];
+            for (let i = 0; i < exercise.sets.length; i++) {
+                const set = exercise.sets[i];             
+                if (set._id.toString() === req.params.setID) {
+                    exercise.sets.splice(i, 1)
+                }
+            }
+        }
+        req.body.exercises = foundWorkoutDay.exercises
+        Workout.findByIdAndUpdate(req.params.id, req.body, (error, updatedWorkoutDay) => {
+            res.redirect(`/dashboard/${req.params.id}/edit`)
+        })
+        
+    })
+})
+
 Router.patch('/:id/addset', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
     const exerciseID = parseInt(req.body.ID)
@@ -46,11 +65,7 @@ Router.patch('/:id/addset', (req, res) => {
 
 Router.patch('/:id/removeset', (req, res) => {
     Workout.findById(req.params.id, (err, foundWorkoutDay) => {
-    console.log(req.body)
     const exerciseID = parseInt(req.body.ID)
-    // const setID = parseInt(req.body.setID)
-    // console.log(exerciseID)
-
     foundWorkoutDay.exercises[exerciseID].sets.pop()
     req.body.exercises = foundWorkoutDay.exercises
 
@@ -157,5 +172,4 @@ Router.get('/:id', (req, res) => {
         })
     })
 })
-
 module.exports = Router

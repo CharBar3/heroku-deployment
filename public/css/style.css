@@ -53,9 +53,21 @@
     border-style: dashed;
 } */
 
+/* =========== */
+/*   ID's   */
+/* =========== */
+
+#editPageTitleInput {
+    height: 32px;
+    font-size: 32px;
+    border: none;
+}
+
 /* ===== */
 /*  old  */
 /* ===== */
+
+/* 
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -167,4 +179,4 @@ form {
 .showEditButton:hover {
     color: lightgreen;
     border-color: lightgreen;
-} 
+}  */
